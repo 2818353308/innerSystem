@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE struts PUBLIC
+      "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+      "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 将action托管给spring -->
+	<constant name="struts.objectFactory" value="spring"></constant>
+	 <!--该属性指定需要Struts 2处理的请求后缀，该属性的默认值是action，即所有匹配*.action的请求都由Struts2处理。 如果用户需要指定多个请求后缀，则多个后缀之间以英文逗号（,）隔开-->
+	 <constant name="struts.action.extension" value="do,action,htmlx" />
+	
+	
+	<!-- 
+		自定义的包
+		1.全局结果集，404,500,或者其他的错误处理。
+		2.如果系统当中有异常了需要保存记录，并且处理错误。
+		3.权限控制
+	 -->
+	<package name="myPackage" namespace="/" extends="struts-default">
+		<!-- 拦截器 异常处理拦截 ，权限拦截 -->
+		<interceptors>
+			<interceptor name="authorIntercepter" class="cn.baisee.intercepters.AuthorInterceptors"></interceptor>
+			<interceptor name="exceptionInterceptor" class="cn.baisee.intercepters.ExceptionInterceptor"></interceptor>
+			<interceptor-stack name="authorStacks">
+<!-- 				<interceptor-ref name="authorIntercepter"></interceptor-ref> -->
+				<interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+				<interceptor-ref name="basicStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+<!-- 		<global-results> -->
+<!-- 			<result name="errorPage404"></result> -->
+<!-- 			<result name="errorPage500"></result> -->
+<!-- 		</global-results> -->
+		 <!-- 异常错误处理机制 -->
+<!-- 		 <global-exception-mappings> -->
+<!-- 		 	<exception-mapping result="errorPage500" exception="java.lang.Throwable"></exception-mapping> -->
+<!-- 		 </global-exception-mappings> -->
+	</package>
+	
+	<package name="authorPackAge" namespace="/" extends="myPackage">
+		<!-- 默认使用权限  -->
+		<default-interceptor-ref name="authorStacks"></default-interceptor-ref>
+	</package>
+</struts>

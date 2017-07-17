@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+	
+	
+	 
+	 
+	<defaultCache 
+	  maxElementsInMemory="500"   
+	  eternal="true"   
+	  overflowToDisk="true"
+	></defaultCache>
+	
+	
+<!-- 		配置一个新的Cache -->
+	
+	 <cache 
+	  name="simpleCode"  
+	  maxElementsInMemory="500"   
+	  eternal="true"   
+	  overflowToDisk="true"></cache>
+	
+</ehcache>

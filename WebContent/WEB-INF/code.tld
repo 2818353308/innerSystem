@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+  version="2.0">
+    
+  <description>我的自定义el表达式</description>
+  <display-name>我的自定义el表达式</display-name>
+  <tlib-version>1.1</tlib-version>
+  <short-name>code</short-name>
+  <uri>http://java.code.el</uri>
+
+  <function>
+    <description>
+     	根据用户UserType查询code表中的类型
+    </description>
+    <name>codeType</name>
+    <!-- 自定义el的类 -->
+    <function-class>cn.baisee.utils.tags.SimpleCodeTag</function-class>
+    <!-- 返回值 方法名 参数 -->
+    <function-signature>java.util.List getCodesByType(java.lang.String)</function-signature>
+    <example>
+    	${code:codeType(userType)}
+    </example>
+  </function>
+  
+   <function>
+    <description>
+      	格式化简单代码
+    </description>
+    <name>formatSimpleCode</name>
+    <function-class>cn.baisee.utils.tags.SimpleCodeTag</function-class>
+    <function-signature>java.lang.String formatSimpleCode(java.lang.String)</function-signature>
+    <example>
+    	${code:formatSimpleCode(item.code)}
+    </example>
+  </function>
+  
+   
+
+ 
+</taglib>
